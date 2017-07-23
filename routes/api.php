@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,4 +17,5 @@ Route::group(['prefix' => 'v1/webapp', 'middleware' => ['api']], function () {
 
 Route::group(['prefix' => 'v1/auth', 'middleware' => ['api']], function () {
     Route::resource('register', 'Auth\RegisterController',['only' => ['store']]);
+    Route::resource('login', 'Auth\LoginController',['only' => ['index']]);
 });

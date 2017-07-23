@@ -2,38 +2,41 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\Extendables\BaseController;
+use App\Models\Database\User\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Exception;
 
-class LoginController extends Controller
+class LoginController extends BaseController
 {
+
     /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
+     * GET resource
      */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index(Request $request)
     {
-        $this->middleware('guest')->except('logout');
+        $this->validate($request, [
+            'username' => 'required|string|min:8',
+            'password' => 'required|min:8'
+        ]);
+
+        try{
+            $user = User::with('password')->where('username', '=', $request->get('username'))->firstOrFail();
+            $dbPassword = $user->password->password;
+        }
+        catch(ModelNotFoundException $e){
+            throw new Exception('Username or password is incorrect');
+        }
+
+        if (Hash::check($request->get('password'),$dbPassword)){
+
+        }
+        else{
+            throw new Exception('Username or password is incorrect');
+        }
+
+        return $this->jsonResponse($user, 200);
     }
 }
