@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Content;
+namespace App\Models\Database\Content;
 
-use App\Models\Extendables\UuidModel;
+use App\Models\Database\Extendables\UuidModel;
 
 class PostSection extends UuidModel {
 
@@ -12,6 +12,6 @@ class PostSection extends UuidModel {
 
     public function post()
     {
-        return $this->hasOne('App\Models\Content\Post', 'uuid', 'post_uuid');
+        return $this->hasOne(Post::class, 'uuid', 'post_uuid');
     }
 }

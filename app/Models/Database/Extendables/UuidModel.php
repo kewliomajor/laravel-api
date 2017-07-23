@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Extendables;
+namespace App\Models\Database\Extendables;
 
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;

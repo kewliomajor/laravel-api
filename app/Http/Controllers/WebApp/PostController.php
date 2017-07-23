@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WebApp;
 
 use App\Http\Controllers\Extendables\BaseController;
-use App\Models\Content\Post;
+use App\Models\Database\Content\Post;
 
 class PostController extends BaseController
 {
