@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6f1ccbea81b3968b41542543db8d006",
+    "content-hash": "71902ff7fca3c9a538b308d4d4e65cbe",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -205,6 +205,96 @@
                 "parser"
             ],
             "time": "2017-05-14T14:47:48+00:00"
+        },
+        {
+            "name": "firebase/php-jwt",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1",
+                "reference": "fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "email": "neuman+pear@twilio.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "email": "anant@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "time": "2015-07-22T18:31:08+00:00"
+        },
+        {
+            "name": "generationtux/jwt-artisan",
+            "version": "0.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/generationtux/jwt-artisan.git",
+                "reference": "bbfc422f1f0c4e79220e858b9fce56ad2bcbf022"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/generationtux/jwt-artisan/zipball/bbfc422f1f0c4e79220e858b9fce56ad2bcbf022",
+                "reference": "bbfc422f1f0c4e79220e858b9fce56ad2bcbf022",
+                "shasum": ""
+            },
+            "require": {
+                "firebase/php-jwt": "^3.0",
+                "illuminate/http": "^5.1",
+                "illuminate/support": "^5.1"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GenTux\\Jwt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Ferguson",
+                    "email": "kylegferg@gmail.com"
+                }
+            ],
+            "description": "JWT auth package for Laravel and Lumen",
+            "keywords": [
+                "auth",
+                "jwt",
+                "laravel",
+                "lumen"
+            ],
+            "time": "2016-07-14T18:12:12+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

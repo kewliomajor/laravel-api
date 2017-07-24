@@ -3,8 +3,9 @@
 namespace App\Models\Database\User;
 
 use App\Models\Database\Extendables\UuidModel;
+use GenTux\Jwt\JwtPayloadInterface;
 
-class User extends UuidModel {
+class User extends UuidModel implements JwtPayloadInterface{
 
     protected $table = 'user.users';
 
@@ -15,5 +16,13 @@ class User extends UuidModel {
     public function password()
     {
         return $this->hasOne(Password::class, 'user_uuid', 'uuid');
+    }
+
+    public function getPayload()
+    {
+        return [
+            'sub' => $this->uuid,
+            'exp' => time() + 7200
+        ];
     }
 }

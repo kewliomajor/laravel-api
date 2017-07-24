@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Barryvdh\Cors\ServiceProvider::class,
+        GenTux\Jwt\Support\LaravelServiceProvider::class,
 
     ],
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Extendables\BaseController;
 use App\Models\Database\User\Password;
 use App\Models\Database\User\User;
+use GenTux\Jwt\JwtToken;
 use Illuminate\Http\Request;
 
 class RegisterController extends BaseController
@@ -13,7 +14,7 @@ class RegisterController extends BaseController
     /*
      * POST resource
      */
-    public function store(Request $request)
+    public function store(JwtToken $jwt, Request $request)
     {
         $this->validate($request, [
             'username' => 'required|string|min:8',
@@ -30,6 +31,8 @@ class RegisterController extends BaseController
             'password' => $encodedPassword
         ]);
 
-        return $this->jsonResponse($user, 200);
+        $token = $jwt->createToken($user);
+
+        return $this->jsonResponse(['jwt' => $token], 200);
     }
 }
