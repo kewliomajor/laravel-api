@@ -2,6 +2,7 @@
 
 namespace App\Models\Database\User;
 
+use App\Models\Database\Content\GuestNote;
 use App\Models\Database\Extendables\UuidModel;
 use GenTux\Jwt\JwtPayloadInterface;
 
@@ -16,6 +17,11 @@ class User extends UuidModel implements JwtPayloadInterface{
     public function password()
     {
         return $this->hasOne(Password::class, 'user_uuid', 'uuid');
+    }
+
+    public function guestNotes()
+    {
+        return $this->hasMany(GuestNote::class, 'author_uuid', 'uuid');
     }
 
     public function getPayload()

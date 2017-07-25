@@ -3,6 +3,8 @@
 namespace App\Models\Exception;
 
 use Exception;
+use GenTux\Jwt\Exceptions\InvalidTokenException;
+use GenTux\Jwt\Exceptions\NoTokenException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 
@@ -45,6 +47,10 @@ class ExceptionJson {
         else if ($this->exception instanceof ModelNotFoundException){
             $error['type'] = 'missing';
             $error['description'] = 'No results found';
+        }
+        else if ($this->exception instanceof InvalidTokenException || $this->exception instanceof NoTokenException){
+            $error['type'] = 'invalid_token';
+            $error['description'] = 'You need to log in again';
         }
         else{
             $error['type'] = get_class($this->exception);

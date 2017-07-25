@@ -13,6 +13,6 @@ class PostController extends BaseController
      */
     public function index()
     {
-        return $this->jsonResponse(Post::with("postSections")->orderBy('created', 'desc')->get(), 200);
+        return $this->jsonResponse(Post::with("postSections")->orderBy('created_at', 'desc')->get(), 200);
     }
 }
