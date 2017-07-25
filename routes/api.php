@@ -21,5 +21,5 @@ Route::group(['prefix' => 'v1/auth', 'middleware' => ['api']], function () {
 });
 
 Route::group(['prefix' => 'v1/webapp/auth', 'middleware' => ['api', 'jwt']], function () {
-    Route::resource('guestbook', 'WebApp\GuestbookController',['only' => ['index']]);
+    Route::resource('guestbook', 'WebApp\GuestbookController',['only' => ['index', 'store']]);
 });
