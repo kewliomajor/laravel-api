@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Extendables\BaseController;
 use App\Models\Database\User\Password;
 use App\Models\Database\User\User;
+use Exception;
 use GenTux\Jwt\JwtToken;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class RegisterController extends BaseController
@@ -25,7 +27,13 @@ class RegisterController extends BaseController
 
         $encodedPassword = bcrypt($request->get('password'));
 
-        $user = User::create($request->except('password'));
+        try{
+            $user = User::create($request->except('password'));
+        }
+        catch(QueryException $e){
+            $username = $request->get('username');
+            throw new Exception('Username already exists: '.$username);
+        }
         $password = Password::create([
             'user_uuid' => $user->uuid,
             'password' => $encodedPassword

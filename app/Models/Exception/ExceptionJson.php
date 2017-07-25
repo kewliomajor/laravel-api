@@ -3,6 +3,8 @@
 namespace App\Models\Exception;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 
 class ExceptionJson {
 
@@ -30,11 +32,19 @@ class ExceptionJson {
             $validationErrors = $this->exception->validator->errors();
             foreach ($validationErrors->keys() as $key){
                 $error[] = [
-                    'type' => get_class($this->exception),
+                    'type' => 'validation',
                     'field' => $key,
                     'description' => join(' ', $validationErrors->get($key))
                 ];
             }
+        }
+        else if ($this->exception instanceof QueryException){
+            $error['type'] = 'database';
+            $error['description'] = 'There was a database error';
+        }
+        else if ($this->exception instanceof ModelNotFoundException){
+            $error['type'] = 'missing';
+            $error['description'] = 'No results found';
         }
         else{
             $error['type'] = get_class($this->exception);
