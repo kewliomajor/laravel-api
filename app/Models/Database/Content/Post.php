@@ -12,6 +12,6 @@ class Post extends UuidModel {
 
     public function postSections()
     {
-        return $this->hasMany(PostSection::class, 'post_uuid', 'uuid')->orderBy('order', 'desc');
+        return $this->hasMany(PostSection::class, 'post_uuid', 'uuid')->orderBy('order', 'asc');
     }
 }
