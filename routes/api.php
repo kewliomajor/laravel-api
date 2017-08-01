@@ -17,7 +17,7 @@ Route::group(['prefix' => 'v1/webapp', 'middleware' => ['api']], function () {
 
 Route::group(['prefix' => 'v1/auth', 'middleware' => ['api']], function () {
     Route::resource('register', 'Auth\RegisterController',['only' => ['store']]);
-    Route::resource('login', 'Auth\LoginController',['only' => ['index']]);
+    Route::resource('login', 'Auth\LoginController',['only' => ['store']]);
 });
 
 Route::group(['prefix' => 'v1/webapp/auth', 'middleware' => ['api', 'jwt']], function () {

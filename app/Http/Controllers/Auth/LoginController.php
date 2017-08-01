@@ -16,7 +16,7 @@ class LoginController extends BaseController
     /*
      * GET resource
      */
-    public function index(JwtToken $jwt, Request $request)
+    public function store(JwtToken $jwt, Request $request)
     {
         $this->validate($request, [
             'username' => 'required|string|min:8',
