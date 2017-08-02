@@ -41,6 +41,9 @@ class RegisterController extends BaseController
 
         $token = $jwt->createToken($user);
 
-        return $this->jsonResponse(['jwt' => $token], 200);
+        $response = $user->toArray();
+        $response['jwt'] = $token;
+
+        return $this->jsonResponse($response, 200);
     }
 }

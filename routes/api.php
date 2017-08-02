@@ -22,4 +22,5 @@ Route::group(['prefix' => 'v1/auth', 'middleware' => ['api']], function () {
 
 Route::group(['prefix' => 'v1/webapp/auth', 'middleware' => ['api', 'jwt']], function () {
     Route::resource('guestbook', 'WebApp\GuestbookController',['only' => ['index', 'store']]);
+    Route::resource('profile', 'User\ProfileController',['only' => ['index', 'store']]);
 });

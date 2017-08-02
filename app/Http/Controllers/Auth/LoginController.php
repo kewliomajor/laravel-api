@@ -38,6 +38,9 @@ class LoginController extends BaseController
             throw new Exception('Username or password is incorrect');
         }
 
-        return $this->jsonResponse(['jwt' => $token], 200);
+        $response = $user->toArray();
+        $response['jwt'] = $token;
+
+        return $this->jsonResponse($response, 200);
     }
 }
